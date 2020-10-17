@@ -66,9 +66,27 @@ struct Teacher
 		cout << "First Name: " << FirstName << endl;
 		cout << "Last Name: " << LastName << endl;
 		date.Print();
-	}
-	
+	}	
 };
+struct Group
+{
+	Teacher teacher;
+	Student student [5];
+	string Name;
+	
+	void FillName()
+	{
+		string name[5] = { "Samsung", "Huawei", "Sony", "Microsoft", "Apple" };		
+		int a;
+		a = rand() % 5;		
+		Name = name[a];		
+	}
+	void PrintName()
+	{
+		cout << "Group Name: " << Name << endl;		
+	}
+};
+
 
 void main()
 {
@@ -81,5 +99,8 @@ void main()
 	n.FillTeacher();
 	n.PrintTeacher();
 	cout << "------------------------------------" << endl;
-	
+	Group g;
+	g.FillName();
+	g.PrintName();
+
 }
