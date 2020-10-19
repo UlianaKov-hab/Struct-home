@@ -44,7 +44,7 @@ struct Student
 		{
 			for (int i = 0; i < 10; i++)
 			{
-				marks[i] = 9 + rand() % 10;
+				marks[i] = 10 + rand() % (12-10);
 			}
 		}
 		else
@@ -108,13 +108,12 @@ struct Teacher
 		cout << "First Name: " << FirstName << endl;
 		cout << "Last Name: " << LastName << endl;
 		date.Print();		
-	}
-	
+	}	
 };
 struct Group
 {
 	Teacher teacher;
-	Student student;
+	
 	string Name;	
 	Student* students = new Student[5];
 	void FillGroup(string name)
@@ -145,6 +144,22 @@ struct Group
 		cout << "----------------------------------" << endl;
 	}
 };
+void Ecxelents(Group *groups)
+{	
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (groups[i].students[j].Status == 1)
+			{
+				cout << "Group name \n";
+				cout << groups[i].Name << endl;
+				groups[i].students[j].PrintStudent();
+				cout << endl;
+			}			
+		}
+	}
+}
 
 void main()
 {	
@@ -156,6 +171,9 @@ void main()
 		groups[i].FillGroup(names[i]);
 		groups[i].PrintGroup();
 	}
+	cout << endl << endl;
+	
+	Ecxelents(groups);
 
 }
 
