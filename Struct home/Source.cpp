@@ -61,12 +61,10 @@ struct Teacher
 		date.Fill(1975, 1990);
 	}
 	void PrintTeacher()
-	{
-		
+	{		
 		cout << "First Name: " << FirstName << endl;
 		cout << "Last Name: " << LastName << endl;
-		date.Print();
-		
+		date.Print();		
 	}
 	
 };
@@ -74,35 +72,30 @@ struct Group
 {
 	Teacher teacher;
 	Student student;
-	string Name;
-	//string name[5] = { "Samsung", "Huawei", "Sony", "Microsoft", "Apple" };
-	
-	//void FillName()
-	//{
-	//	/*string name[5] = { "Samsung", "Huawei", "Sony", "Microsoft", "Apple" };		*/
-	//	/*int a;
-	//	a = rand() % 5;		                                                                                            
-	//	Name = name[a];	*/	
-	//}
-	/*void PrintName()
-	{
-		
-		cout << "Group Name: " << name[i] << endl;		
-	}*/
-	
-	void FillGroup()
-	{
-		cout << "Name Group: ";
-		cin >> Name;
-		cout << "Teacher" << endl;
+	string Name;	
+	Student* students = new Student[5];
+	void FillGroup(string name)
+	{			
+		Name = name;
 		teacher.FillTeacher();
-		teacher.PrintTeacher();
-		cout << endl;
-		cout << "Students: " << endl<<endl;
-		Student* students = new Student[5];
+		
 		for (int i = 0; i < 5; i++)
 		{
-			students[i].FillStudent();
+			students[i].FillStudent();				
+		}
+	}
+	void PrintGroup()
+	{
+
+		cout << "Name Group: " << Name << endl;
+		cout << "Teacher" << endl;
+
+		teacher.PrintTeacher();
+		cout << endl;
+		cout << "Students: " << endl << endl;
+		
+		for (int i = 0; i < 5; i++)
+		{
 			students[i].PrintStudent();
 			cout << endl;
 		}
@@ -112,10 +105,15 @@ struct Group
 
 void main()
 {	
-	Group g;
-	for (int i = 0; i < 5; i++)
-	{		
-		cout << endl;
-		g.FillGroup();
+	Group groups[3];
+	string names[3]= { "Samsung", "Microsoft", "Apple" };	
+
+	for (int i = 0; i < 3; i++)
+	{				
+		groups[i].FillGroup(names[i]);
+		groups[i].PrintGroup();
 	}
+
 }
+
+
