@@ -25,6 +25,9 @@ struct Student
 	string FirstName;
 	string LastName;
 	Date date;
+	int marks[10];
+	int Status;
+	int Privilege;
 	void FillStudent()
 	{
 		string fn[10] = { "Ivan", "Oleg", "Maksim", "Oleksandr", "Misha", "Tanya", "Vera", "Olga", "Iryna", "Sveta" };
@@ -35,13 +38,53 @@ struct Student
 		FirstName = fn[a];
 		LastName = ln[b];
 		date.Fill(1990, 2010);
+		Status = rand() % 2;	
+		Privilege = rand() % 2;
+		if (Status == 1)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				marks[i] = 9 + rand() % 10;
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				marks[i] = 1 + rand() % 8;
+			}
+		}
+		
+
 	}
 	void PrintStudent()
-	{
-		
+	{		
 		cout << "First Name: " << FirstName << endl;
 		cout << "Last Name: " << LastName << endl;
 		date.Print();
+		cout << "Marks: ";
+		for (int i = 0; i < 10; i++)
+		{
+			cout<<marks[i]<<" ";
+		}
+		cout << endl;
+		if (Status == 1)
+		{
+			cout << "Status - ecxellent student" << endl;
+		}
+		else
+		{
+			cout << "Status - " << Status<<endl;
+		}
+		if (Privilege == 1)
+		{
+			cout << "Student have privilege";
+		}
+		if (Privilege == 0)
+		{
+			cout << "Student has no privilege";
+		}	
+		cout << endl;
 	}
 };
 struct Teacher
@@ -87,7 +130,7 @@ struct Group
 	void PrintGroup()
 	{
 
-		cout << "Name Group: " << Name << endl;
+		cout << "Name Group: " << Name << endl<<endl;
 		cout << "Teacher" << endl;
 
 		teacher.PrintTeacher();
