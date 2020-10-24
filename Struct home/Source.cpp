@@ -161,23 +161,20 @@ void Ecxelents(Group *groups) //1
 		}
 	}	
 }
-void Highest_Academic_Perfomance(Group* groups)//2
+void Highest_Academic_Perfomance_Teacher(Group* groups)//2
 {
-	int sum = 0;
-	//int average_rating_students [5];
+	int sum = 0;	
 	int average_rating_group [3];
 	
 	for (int i = 0; i < 3; i++)
 	{
 		sum = 0;
 		for (int j = 0; j < 5; j++)
-		{
-			//sum = 0;
+		{			
 			for (int e = 0; e < 10; e++)			
 			{				
 				sum += groups[i].students[j].marks[e];				
-			}	
-			//average_rating_students[j] = sum;			
+			}					
 		}
 		average_rating_group[i] = sum;		
 	}
@@ -185,8 +182,7 @@ void Highest_Academic_Perfomance(Group* groups)//2
 	for (int i = 0; i < 3; i++)
 	{		
 		if (average_rating_group[i] > max)
-			max = average_rating_group[i];
-		//cout << average_rating_group[i] << "\t";		
+			max = average_rating_group[i];		
 	}
 	for (int i = 0; i < 3; i++)
 	{
@@ -198,8 +194,80 @@ void Highest_Academic_Perfomance(Group* groups)//2
 			groups[i].teacher.PrintTeacher();
 		}
 	}
+}
+void Lowest_Academic_Perfomance_Group(Group* groups)//3
+{
+	int sum = 0;
+	int average_rating_group[3];
 
-
+	for (int i = 0; i < 3; i++)
+	{
+		sum = 0;
+		for (int j = 0; j < 5; j++)
+		{
+			for (int e = 0; e < 10; e++)
+			{
+				sum += groups[i].students[j].marks[e];
+			}
+		}
+		average_rating_group[i] = sum;
+	}
+	/*for (int i = 0; i < 3; i++)
+	{
+		cout << average_rating_group[i] << " ";
+	}*/
+	int min = average_rating_group[0];
+	for (int i = 0; i < 3; i++)
+	{
+		if (average_rating_group[i] < min)
+			min = average_rating_group[i];
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (average_rating_group[i] == min)
+		{
+			cout << "The Lowest Academic Perfomance\t" << min << endl;
+			cout << "Group name \n";
+			cout << groups[i].Name << endl;			
+		}
+	}
+}
+void Number_Highest_Academic_Perfomance_Student(Group* groups)//6
+{
+	int sum = 0;	
+	int average_rating_student[3][5];
+	for (int i = 0; i < 3; i++)
+	{
+		sum = 0;
+		for (int j = 0; j < 5; j++)
+		{
+			sum = 0;
+			for (int e = 0; e < 10; e++)
+			{
+				sum += groups[i].students[j].marks[e];
+			}
+			average_rating_student[i][j] = sum/10;			
+		}		
+	}	
+	/*for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			cout << average_rating_student[i][j] << "\t";
+		}
+		cout << endl;		
+	}*/
+	short a = 8.5;
+	int count = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (average_rating_student[i][j] >= a)
+				count++;			
+		}		
+	}
+	cout << "Number of students with an average rating abov 8.5:  " << count << endl;
 }
 void CountPrivilege(Group* groups)//7
 {
@@ -247,8 +315,9 @@ void main()
 	
 	//Ecxelents(groups);
 	//CountPrivilege(groups);
-	Highest_Academic_Perfomance(groups);
-
+	//Highest_Academic_Perfomance_Teacher(groups);
+	//Number_Highest_Academic_Perfomance_Student(groups);
+	Lowest_Academic_Perfomance_Group(groups);
 }
 
 
