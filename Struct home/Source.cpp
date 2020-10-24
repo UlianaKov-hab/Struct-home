@@ -145,7 +145,8 @@ struct Group
 	}
 };
 void Ecxelents(Group *groups)
-{	
+{
+	cout << "Ecxellent students: " << endl << endl;
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -155,14 +156,45 @@ void Ecxelents(Group *groups)
 				cout << "Group name \n";
 				cout << groups[i].Name << endl;
 				groups[i].students[j].PrintStudent();
-				cout << endl;
+				cout << endl;				
 			}			
 		}
+	}	
+}
+void CountPrivilege(Group* groups)
+{
+	int count[3]{ 0,0,0 };
+	int max = 0;	
+	for (int i = 0; i < 3; i++)
+	{		
+		for (int j = 0; j < 5; j++)
+		{
+			if (groups[i].students[j].Privilege == 1)
+			{
+				count[i]++;				
+			}
+		}
 	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (count[i] > max)
+		{
+			max = count[i];					
+		}
+	}	
+	cout << "Group with the most privileged students: " << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		if (count[i] == max)
+		{			
+			cout << groups[i].Name << endl;
+		}
+	}	
 }
 
 void main()
 {	
+	srand(time(0));
 	Group groups[3];
 	string names[3]= { "Samsung", "Microsoft", "Apple" };	
 
@@ -174,6 +206,7 @@ void main()
 	cout << endl << endl;
 	
 	Ecxelents(groups);
+	//CountPrivilege(groups);
 
 }
 
