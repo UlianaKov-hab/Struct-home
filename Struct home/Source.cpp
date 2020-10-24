@@ -144,7 +144,7 @@ struct Group
 		cout << "----------------------------------" << endl;
 	}
 };
-void Ecxelents(Group *groups)
+void Ecxelents(Group *groups) //1
 {
 	cout << "Ecxellent students: " << endl << endl;
 	for (int i = 0; i < 3; i++)
@@ -161,7 +161,47 @@ void Ecxelents(Group *groups)
 		}
 	}	
 }
-void CountPrivilege(Group* groups)
+void Highest_Academic_Perfomance(Group* groups)//2
+{
+	int sum = 0;
+	//int average_rating_students [5];
+	int average_rating_group [3];
+	
+	for (int i = 0; i < 3; i++)
+	{
+		sum = 0;
+		for (int j = 0; j < 5; j++)
+		{
+			//sum = 0;
+			for (int e = 0; e < 10; e++)			
+			{				
+				sum += groups[i].students[j].marks[e];				
+			}	
+			//average_rating_students[j] = sum;			
+		}
+		average_rating_group[i] = sum;		
+	}
+	int max = 0;
+	for (int i = 0; i < 3; i++)
+	{		
+		if (average_rating_group[i] > max)
+			max = average_rating_group[i];
+		//cout << average_rating_group[i] << "\t";		
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (average_rating_group[i] == max)
+		{
+			cout << "The Highest Academic Perfomance\t" << max << endl;
+			cout << "Group name \n";
+			cout << groups[i].Name << endl;
+			groups[i].teacher.PrintTeacher();
+		}
+	}
+
+
+}
+void CountPrivilege(Group* groups)//7
 {
 	int count[3]{ 0,0,0 };
 	int max = 0;	
@@ -205,8 +245,9 @@ void main()
 	}
 	cout << endl << endl;
 	
-	Ecxelents(groups);
+	//Ecxelents(groups);
 	//CountPrivilege(groups);
+	Highest_Academic_Perfomance(groups);
 
 }
 
