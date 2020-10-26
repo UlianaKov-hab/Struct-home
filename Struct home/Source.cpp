@@ -232,6 +232,78 @@ void Lowest_Academic_Perfomance_Group(Group* groups)//3
 		}
 	}
 }
+void Birthday1(Group* groups) //4
+{
+	Student* arr1 = new Student[15];
+	for (int i = 0, s = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++, s++)
+		{
+			arr1[s] = groups[i].students[j];
+			//groups[i].students[j].PrintStudent();
+			//cout << endl;
+		}
+	}
+	bool a;
+	bool b=false;
+	for (int i = 0; i < 15; i++)
+	{
+		//arr1[i].PrintStudent();
+		//cout << endl;
+		a = false;
+
+		for (int j = i+1; j < 15; j++)
+		{			
+			if (arr1[i].date.year && arr1[i].date.month && arr1[i].date.day== arr1[j].date.year && arr1[j].date.month && arr1[j].date.day)
+			{
+				a = true;
+				b = true;				
+				arr1[j].PrintStudent();
+				cout << endl;
+			}			
+		}
+		if (a)
+		{
+			arr1[i].PrintStudent();
+			cout << endl;
+		}
+	}
+	if (b == false)
+	{
+		cout << "net" << endl;
+	}
+}
+void OldestStudent(Group* groups)//5
+{
+	int year = (2020-groups[0].students[0].date.year)*365;
+	int month = groups[0].students[0].date.month*30;
+	int day = groups[0].students[0].date.day;
+	int vik;
+	vik = day + month + year;
+	int vik1;
+	int indexi = 0, indexj=0;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			year = (2020-groups[i].students[j].date.year)*365;
+			month = groups[i].students[j].date.month*30;
+			day = groups[i].students[i].date.day;
+			vik1= day + month + year;
+			if (vik1 > vik)
+			{
+				vik = vik1;
+				indexi = i;
+				indexj = j;
+			}
+
+		}
+	}
+	cout << "The oldest student is: " << endl;
+	groups[indexi].students[indexj].PrintStudent();
+
+}
+
 void Number_Highest_Academic_Perfomance_Student(Group* groups)//6
 {
 	int sum = 0;	
@@ -302,7 +374,7 @@ void CountPrivilege(Group* groups)//7
 
 void main()
 {	
-	srand(time(0));
+	//srand(time(0));
 	Group groups[3];
 	string names[3]= { "Samsung", "Microsoft", "Apple" };	
 
@@ -317,7 +389,9 @@ void main()
 	//CountPrivilege(groups);
 	//Highest_Academic_Perfomance_Teacher(groups);
 	//Number_Highest_Academic_Perfomance_Student(groups);
-	Lowest_Academic_Perfomance_Group(groups);
+	//Lowest_Academic_Perfomance_Group(groups);
+	//Birthday1(groups);
+	OldestStudent(groups);
 }
 
 
