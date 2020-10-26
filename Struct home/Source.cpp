@@ -276,8 +276,8 @@ void Birthday1(Group* groups) //4
 void OldestStudent(Group* groups)//5
 {
 	int year = (2020-groups[0].students[0].date.year)*365;
-	int month = groups[0].students[0].date.month*30;
-	int day = groups[0].students[0].date.day;
+	int month = (12-groups[0].students[0].date.month)*30;
+	int day = 30-groups[0].students[0].date.day;
 	int vik;
 	vik = day + month + year;
 	int vik1;
@@ -287,8 +287,8 @@ void OldestStudent(Group* groups)//5
 		for (int j = 0; j < 5; j++)
 		{
 			year = (2020-groups[i].students[j].date.year)*365;
-			month = groups[i].students[j].date.month*30;
-			day = groups[i].students[i].date.day;
+			month = (12-groups[i].students[j].date.month)*30;
+			day = 30-groups[i].students[i].date.day;
 			vik1= day + month + year;
 			if (vik1 > vik)
 			{
