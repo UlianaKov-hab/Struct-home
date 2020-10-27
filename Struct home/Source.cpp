@@ -163,8 +163,8 @@ void Ecxelents(Group *groups) //1
 }
 void Highest_Academic_Perfomance_Teacher(Group* groups)//2
 {
-	int sum = 0;	
-	int average_rating_group [3];
+	float sum = 0;	
+	float average_rating_group [3];
 	
 	for (int i = 0; i < 3; i++)
 	{
@@ -176,9 +176,9 @@ void Highest_Academic_Perfomance_Teacher(Group* groups)//2
 				sum += groups[i].students[j].marks[e];				
 			}					
 		}
-		average_rating_group[i] = sum;		
+		average_rating_group[i] = sum/50;		
 	}
-	int max = 0;
+	float max = 0;
 	for (int i = 0; i < 3; i++)
 	{		
 		if (average_rating_group[i] > max)
@@ -197,8 +197,8 @@ void Highest_Academic_Perfomance_Teacher(Group* groups)//2
 }
 void Lowest_Academic_Perfomance_Group(Group* groups)//3
 {
-	int sum = 0;
-	int average_rating_group[3];
+	float sum = 0;
+	float average_rating_group[3];
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -210,13 +210,13 @@ void Lowest_Academic_Perfomance_Group(Group* groups)//3
 				sum += groups[i].students[j].marks[e];
 			}
 		}
-		average_rating_group[i] = sum;
+		average_rating_group[i] = sum/50;
 	}
 	/*for (int i = 0; i < 3; i++)
 	{
 		cout << average_rating_group[i] << " ";
 	}*/
-	int min = average_rating_group[0];
+	float min = average_rating_group[0];
 	for (int i = 0; i < 3; i++)
 	{
 		if (average_rating_group[i] < min)
@@ -306,8 +306,8 @@ void OldestStudent(Group* groups)//5
 
 void Number_Highest_Academic_Perfomance_Student(Group* groups)//6
 {
-	int sum = 0;	
-	int average_rating_student[3][5];
+	float sum = 0;
+	float average_rating_student[3][5];
 	for (int i = 0; i < 3; i++)
 	{
 		sum = 0;
@@ -318,17 +318,17 @@ void Number_Highest_Academic_Perfomance_Student(Group* groups)//6
 			{
 				sum += groups[i].students[j].marks[e];
 			}
-			average_rating_student[i][j] = sum/10;			
+			average_rating_student[i][j] = sum/10;
 		}		
 	}	
-	/*for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
 			cout << average_rating_student[i][j] << "\t";
 		}
 		cout << endl;		
-	}*/
+	}
 	short a = 8.5;
 	int count = 0;
 	for (int i = 0; i < 3; i++)
@@ -387,11 +387,11 @@ void main()
 	
 	//Ecxelents(groups);
 	//CountPrivilege(groups);
-	//Highest_Academic_Perfomance_Teacher(groups);
+	Highest_Academic_Perfomance_Teacher(groups);
 	//Number_Highest_Academic_Perfomance_Student(groups);
 	//Lowest_Academic_Perfomance_Group(groups);
 	//Birthday1(groups);
-	OldestStudent(groups);
+	//OldestStudent(groups);
 }
 
 
