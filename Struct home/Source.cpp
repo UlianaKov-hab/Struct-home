@@ -476,7 +476,7 @@ int Menu2(Group* groups)
 
 void main()
 {	
-	//srand(time(0));
+	srand(time(0));
 	Group groups[3];
 	string names[3]= { "Samsung", "Microsoft", "Apple" };	
 
