@@ -1,6 +1,9 @@
 #include<iostream>
 #include<time.h>
 #include<string>
+#include <conio.h>
+#include<fstream>
+#include <windows.h>
 using namespace std;
 struct Date
 {
@@ -270,7 +273,7 @@ void Birthday1(Group* groups) //4
 	}
 	if (b == false)
 	{
-		cout << "net" << endl;
+		cout << "There are no students born on the same day" << endl;
 	}
 }
 void OldestStudent(Group* groups)//5
@@ -321,14 +324,14 @@ void Number_Highest_Academic_Perfomance_Student(Group* groups)//6
 			average_rating_student[i][j] = sum/10;
 		}		
 	}	
-	for (int i = 0; i < 3; i++)
+	/*for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
 			cout << average_rating_student[i][j] << "\t";
 		}
 		cout << endl;		
-	}
+	}*/
 	short a = 8.5;
 	int count = 0;
 	for (int i = 0; i < 3; i++)
@@ -371,6 +374,105 @@ void CountPrivilege(Group* groups)//7
 		}
 	}	
 }
+//////////////////////////////////////////////////////////////
+void SetColor(int col)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), col);
+}
+
+void SetPos(int x, int y)
+{
+	COORD c;
+	c.X = x;
+	c.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+void Size_Console(int x, int y)
+{
+	HANDLE out_handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD crd = { x, y };
+	SMALL_RECT src = { 0, 0, crd.X , crd.Y };
+	SetConsoleWindowInfo(out_handle, true, &src);
+	SetConsoleScreenBufferSize(out_handle, crd);
+}
+int Menu(string menu_items[], int SIZE) {
+	int key = 0;
+	int code;
+	do {
+		//system("cls");
+		key = (key + SIZE) % SIZE;
+		for (int i = 0; i < SIZE; i++)
+		{
+			SetPos(0,  i);
+			if (key == i)
+			{
+
+				cout << " "; SetColor(6); cout << menu_items[i]; SetColor(3); cout << " " << endl; SetColor(15);
+			}
+			else
+			{
+				cout << " "; cout << menu_items[i]; cout << " " << endl;
+			}
+
+		}
+		code = _getch();
+		if (code == 224)
+		{
+			code = _getch();
+			if (code == 80) key++;
+			if (code == 72) key--;
+		}
+	} while (code != 13);
+	system("cls");
+	return key;
+}
+int Menu2(Group* groups)
+{
+	Size_Console(65, 45);
+	string menu[] = { "1.Ecxelents student","2.Teacher of Highest academic perfomance group",
+		"3.Group with lowest academic perfomance","4.Find students who were born on the same day",
+		"5.Find the oldest student", "6.The number of students who have an average score above 8.5",
+		"7.Groups with the most privileges", "8.Exit" };
+	int m = Menu(menu, size(menu));
+	if (m == 0)
+	{
+		Ecxelents(groups);
+	}
+	if (m == 1)
+	{
+		Highest_Academic_Perfomance_Teacher(groups);
+	}
+	if (m == 2)
+	{
+		Lowest_Academic_Perfomance_Group(groups);
+		
+	}
+	if (m == 3)
+	{
+		Birthday1(groups);
+		
+	}
+	if (m == 4)
+	{
+		OldestStudent(groups);
+		
+	}
+	if (m == 5)
+	{
+		Number_Highest_Academic_Perfomance_Student(groups);
+	}
+	if (m == 6)
+	{
+		CountPrivilege(groups);
+		
+	}
+	system("pause");
+	system("CLS");
+	return m;
+}
+
+/////////////////////////////////////////////////////////////
+
 
 void main()
 {	
@@ -381,13 +483,24 @@ void main()
 	for (int i = 0; i < 3; i++)
 	{				
 		groups[i].FillGroup(names[i]);
-		groups[i].PrintGroup();
+		//groups[i].PrintGroup();
 	}
 	cout << endl << endl;
+
+	//Menu2(groups);
+	while (Menu2(groups) != 7)
+	{
+
+	}
+	/*do
+	{
+		Menu2(groups);
+	}
+	while (true);	*/
 	
 	//Ecxelents(groups);
 	//CountPrivilege(groups);
-	Highest_Academic_Perfomance_Teacher(groups);
+	//Highest_Academic_Perfomance_Teacher(groups);
 	//Number_Highest_Academic_Perfomance_Student(groups);
 	//Lowest_Academic_Perfomance_Group(groups);
 	//Birthday1(groups);
